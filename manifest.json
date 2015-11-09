@@ -1,0 +1,54 @@
+{
+	"name": "Escritorio Unificado",
+	"description": "Kiosko Vive Digital.",
+	"version": "0.0.88",
+	"app": {
+		"background": {
+			"scripts": ["js/background.js"]
+		}
+	},
+	"icons": { "16": "images/icons/calculator-16.png", "128": "images/icons/calculator-128.png" },
+	"permissions": [
+		"fullscreen",
+		"identity",
+		"storage",
+		"https://accounts.google.com/*",
+		"https://www.google.com/*",
+		"https://www.google.com.co/*",
+		"https://www.googleapis.com/*",
+		"https://lh3.googleusercontent.com/*",
+		"http://anditel.mooc4.info/*",
+		"http://anditel.mooc4.org/*",
+		"http://imvirtual.kmelx.com:5000/*",
+		"http://noticiaskdv.blogspot.com/",
+		"http://www.mintic.gov.co/*",
+		"http://logopediayeducacion.blogspot.com/*",
+		"http://www.mooc4.me/*",
+		"http://www.kmelx.com/*",
+		"http://feeds.feedburner.com/",
+		"http://l2.io/ip/*",
+		"http://10.20.20.20:8080/*",
+		"webview"
+	],
+	"oauth2": {
+		"client_id": "1098043072371-2jmvhij1oqrv9croetbopbjkhi7dcock.apps.googleusercontent.com",
+		"scopes": [
+			"https://www.googleapis.com/auth/plus.login",
+			"https://www.googleapis.com/auth/blogger",
+			"https://www.googleapis.com/auth/calendar",
+			"https://www.google.com/m8/feeds/",
+			"https://www.googleapis.com/auth/drive",
+			"https://www.googleapis.com/auth/drive.appdata",
+			"https://www.googleapis.com/auth/drive.file",
+			"https://www.googleapis.com/auth/drive.scripts",
+			"https://mail.google.com/mail/feed/atom",
+			"https://www.googleapis.com/auth/plus.me",
+			"https://www.googleapis.com/auth/userinfo.email",
+			"https://www.googleapis.com/auth/userinfo.profile",
+			"https://www.googleapis.com/auth/youtube",
+			"https://www.googleapis.com/auth/youtube.upload",
+			"https://www.googleapis.com/auth/youtubepartner"
+		]
+	},
+	"offline_enabled": true
+}

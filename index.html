@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Escritorio Unificado</title>
+		<!-- Meta tags -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- End Meta Tags -->
+		<!-- CSS (includes Bootstrap) -->
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/custom.css" rel="stylesheet" media="screen">
+		<link href="css/dev.css" rel="stylesheet" media="screen">
+		<!-- End CSS -->
+	</head>
+	<body>
+		<div id="main-info"></div>
+		<!-- Online -->
+		<div id="online-login-tpl" type="text/x-handlebars-template">
+			<div id="login-container">
+				<!-- Login Header -->
+				<header>
+					<img id="logo" class="img-responsive img-center" src="/images/logos/kiosko.png" alt="Kiosco">
+				</header>
+				<!-- End Login Header -->
+
+				<!-- Main Login Info -->
+				<div id="main-login" class="text-center">
+					<h1 class="blue-google">&#161;Hola&#33;</h1>
+					<p>Para ingresar al servicio Kioscos debes<br/>
+					conectarte con tu cuenta Google</p>
+					
+					<!-- Online login -->
+					<div id="online-div">
+						<p>
+							<img id="google-logo" class="img-responsive img-center" src="/images/logos/google.png" alt="Google">
+						</p>
+						<div style="display: none;" class="alert alert-warning permission-warning">Solo te falta aceptar un permiso adicional, vuelve a dar clic al bot&oacute;n de ingreso.</div>
+						<span id="loading-message" class="text-muted"></span>
+						<p>
+							<div class="btn-group">
+								<a class="btn btn-danger">
+									<i class='fa fa-google-plus'></i>
+								</a>
+								<a id="online-button-login" href="#" class="btn btn-danger">
+									Ingresa con tu cuenta Google+
+								</a>
+							</div>
+							<p>
+								<div class="btn-group">
+									<a href="#" class="btn btn-default btn-sm" id="create-account">Crear una cuenta</a>
+									<a href="#" class="btn btn-default btn-sm" id="activate-offline-mode">Activar modo off-line</a>
+									<a href="#" class="btn btn-success btn-sm refresh-login"><i class="fa fa-refresh"></i></a>
+								</div>
+							</p>
+						</p>
+					</div>
+					<!-- End online login -->
+
+					<!-- Offline login -->
+					<div class="form-group" id="offline-div" style="display: none;">
+						<div id="offline-message" class="alert alert-info">Recuerda que tambi&eacute;n puedes ingresar con la cuenta usuario1 al modo sin conexi&oacute;n</div>
+						<input type="text" id="offline-input-login" class="form-control" placeholder="Digita tu cuenta off-line">
+						<div class="offline-error-alert alert alert-warning hidden">
+							No encontramos tu cuenta, intenta ingresar con usuario1 para acceder a los servicos de forma offline
+						</div>
+
+						<div class="btn-group">
+							<a class="btn btn-primary">
+								<i class='fa fa-unlink'></i>
+							</a>
+							<a id="offline-button-login" href="#" class="btn btn-primary">
+								Ingresa con una cuenta off-line
+							</a>
+						</div>
+						<p>
+							<a href="#" class="btn btn-default btn-sm" id="activate-online-mode">Activar modo on-line</a>
+						</p>
+					</div>
+					<!-- End offline login -->
+				</div>
+				<!-- End Main Login Info -->
+
+				<!-- Login Footer -->
+				<footer>
+					<div class="container">
+						<ul class="list-unstyled list-inline text-center">
+							<li>
+								<a href="#">
+									<img src="/images/gobierno_colombia.png"/>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="/images/mintic.png"/>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="/images/internet_kioskos.png"/>
+								</a>
+							</li>
+						</ul>
+						<div class="pull-right">
+							Powered by&nbsp;&nbsp; <img src="/images/logo_anditel_foot.png"/>
+						</div>
+					</div>
+				</footer>
+				<!-- End Login Footer -->
+			</div>
+		</div>
+
+		<!-- Offline -->
+		<div id="offline-login-tpl" type="text/x-handlebars-template">
+			<div id="login-container">
+				<!-- Login Header -->
+				<header>
+					<img id="logo" class="img-responsive img-center" src="/images/logos/kiosko.png" alt="Kiosco">
+				</header>
+				<!-- End Login Header -->
+
+				<!-- Main Login Info -->
+				<div id="main-login" class="text-center">
+					<h1 class="blue-google">&#161; Hola &#33;</h1>
+					<p>Para ingresar al servicio Kioscos debes<br/>
+					conectarte con tu cuenta google</p>
+					<div class="form-group">
+						<input type="text" id="offline-input-login" class="form-control" placeholder="Cuenta Google">
+						<a id="offline-button-login" href="#" class="btn btn-primary btn-lg">Conectar</a>
+					</div>
+				</div>
+				<!-- End Main Login Info -->
+
+				<!-- Login Footer -->
+				<footer>
+					<div class="container">
+						<ul class="list-unstyled list-inline text-center">
+							<li>
+								<a href="#">
+									<img src="/images/gobierno_colombia.png"/>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="/images/mintic.png"/>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="/images/internet_kioskos.png"/>
+								</a>
+							</li>
+						</ul>
+						<div class="pull-right">
+							Powered by&nbsp;&nbsp; <img src="/images/logo_anditel_foot.png"/>
+						</div>
+					</div>
+				</footer>
+				<!-- End Login Footer -->
+			</div>
+		</div>
+		<!-- End offline -->
+
+		<!-- First Page -->
+		<div id="home-tpl" type="text/x-handlebars-template">
+			<nav class="navbar navbar-default" id="main-nav" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#"><img id="logo-nav" class="" src="/images/logo_white.png" /></a>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul id="user-options" class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#" id="chat-btn" class="help-icons" data-toggle="dropdown"></a>
+								<ul class="dropdown-menu nav-icons-dd">
+									<li class="dd-title" id="chat-modal">Chat</li>
+									<ul id="chat-list"></ul>
+								</ul>
+
+							</li>
+							<li>
+								<a href="#" id="task-btn" class="help-icons" data-toggle="dropdown"></a>
+								<ul class="dropdown-menu nav-icons-dd">
+									<li class="dd-title">Tareas pendientes</li>
+									<li>
+										<!-- TODO: Specify task functionality -->
+										<div class="text-muted" id="tasks-items-list">No hay tareas pendientes.</div>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#" id="help-btn" class="help-icons" data-toggle="dropdown"></a>
+								<ul class="dropdown-menu nav-icons-dd">
+									<li class="dd-title">Ayuda</li>
+									<li>
+										<!-- TODO: Create documents for help -->
+										<div class="text-muted" id="help-items-list">En este momento no hay documentos de ayuda.</div>
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a href="#" id="cron-container" class="dropdown-toggle" data-toggle="dropdown">
+									Tiempo: <span id="chron1">
+									<span id="hours" data-hours="0">00</span>:<span id="minutes" data-minutes="0">00</span>:<span id="seconds" data-seconds="0">00</span>
+									</span> 
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li role="presentation" class="dropdown-header">Usted esta consumiendo los siguientes servicios</a></li>
+									<li class="divider"></li>
+								</ul>
+							</li>
+							<li>
+								<div class="media" id="user-info">
+									<a class="pull-right avatar-link" href="#">
+										<img id="nav-user-image" class="img-circle" src="images/avatar_user.png" />
+									</a>
+									<div class="media-body">
+										<a href="#" id="logout">Cerrar Sesi&oacute;n</a><br /><span id="nav-user-name"></span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="" id="home-content-container">
+				<div class="container main-menu" id="content-container">
+					<div id="sideBar" class="side-bar">
+						<ul class="list-unstyled">
+							<li><a href="#" id="side-hide"><img src="images/sidebar/volver.png" alt="Esconder" class="img-responsive img-center"></a></li>
+							<li><a href="#" id="side-noticias"><img src="images/sidebar/noticias.png" alt="Noticias" class="img-responsive img-center"></a></li>
+							<li><a href="#" id="side-blog"><img src="images/sidebar/blog.png" alt="Blog" class="img-responsive img-center"></a></li>
+							<li><a href="#" id="side-foro"><img src="images/sidebar/foro.png" alt="Foro" class="img-responsive img-center"></a></li>
+							<li><a href="#" id="side-chat"><img src="images/sidebar/chat.png" alt="Chat" class="img-responsive img-center"></a></li>
+						</ul>
+					</div>
+					<a href="#" id="controlToProfile" class="eu-control eu-control-right"><i class="fa fa-angle-right"></i></a>
+					<h1 id="welcome-title" class="text-center">Tu Escritorio Digital</h1>
+					<h2 id="welcome-subtitle" class="text-center">Encuentra aqu&iacute; todos tus servicios y aplicaciones</h2>
+					<div class="col-md-6">
+						<div class="green-bg main-menu-item overflow-hidden auto" id="profile">
+							<div class="col-md-8">
+								<h1 id="user-name"></h1>
+								<h4 class="">Mi perfil</h4>
+							</div>
+							<div class="col-md-4 pull-right">
+								<img id="user-image" class="img-circle avatar pull-right" src="images/avatar_user.png" />
+								<ul class="list-unstyled text-right">
+									<li>Cursos: <span id="courses-count"></span></li>
+									<li>Insignias: <span id="badges-count"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="red-bg main-menu-item overflow-hidden auto" id="community">
+							<h1 class="auto"></h1>
+							<h4 class="pull-left">Comunidad</h4>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="blue-bg main-menu-item overflow-hidden auto" id="education">
+							<h1 class="auto"></h1>
+							<h4 class="pull-left">Educaci&oacute;n</h4>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="yellow-bg main-menu-item overflow-hidden auto not-admin" id="services">
+							<h1 class="auto"></h1>
+							<h4 class="pull-left">Servicios</h4>
+						</div>
+						<div class="violet-bg main-menu-item overflow-hidden auto is-admin" id="administration">
+							<h1 class="auto"></h1>
+							<h4 class="pull-left">Administraci&oacute;n</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="foot">
+				<div class="container">
+					<ul class="list-unstyled list-inline">
+						<li>
+							<a href="#">
+								<img src="/images/gobierno_colombia.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="/images/mintic.png"/>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="/images/internet_kioskos.png"/>
+							</a>
+						</li>
+					</ul>
+					<div class="pull-right">
+						Powered by&nbsp;&nbsp; <img src="/images/logo_anditel_foot.png"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End First Page -->
+
+		<!-- Profile screen template-->
+		<div id="profile-tpl" type="text/x-handlebars-template">
+			<div id="sideBar" class="side-bar">
+				<ul class="list-unstyled">
+					<li><a href="#" id="side-hide"><img src="images/sidebar/volver.png" alt="Esconder" class="img-responsive img-center"></a></li>
+					<li><a href="#" id="side-noticias"><img src="images/sidebar/noticias.png" alt="Noticias" class="img-responsive img-center"></a></li>
+					<li><a href="#" id="side-blog"><img src="images/sidebar/blog.png" alt="Blog" class="img-responsive img-center"></a></li>
+					<li><a href="#" id="side-foro"><img src="images/sidebar/foro.png" alt="Foro" class="img-responsive img-center"></a></li>
+					<li><a href="#" id="side-chat"><img src="images/sidebar/chat.png" alt="Chat" class="img-responsive img-center"></a></li>
+				</ul>
+			</div>
+			<a href="#" id="open-sidebar"><img src="images/sidebar/open.png" alt="Abrir" class="img-responsive"></a>
+			<a href="#" id="return-home"><img src="images/return.png" alt="Volver" class="img-responsive"></a>
+			<ul id="sub-navigation" class="list-inline">
+				<li><a href="#" id="community-sub-menu"><img src="/images/sub_comunidad.png" alt=""></a></li>
+				<li><a href="#" id="education-sub-menu"><img src="/images/sub_education.png" alt=""></a></li>
+				<li class="not-admin"><a href="#" id="services-sub-menu"><img src="/images/sub_services.png" alt=""></a></li>
+				<li class="is-admin"><a href="#" id="administration-sub-menu"><img src="/images/sub_administration.png" alt=""></a></li>
+			</ul>
+			<h1 id="profile-title"><span>Perfil</span></h1>
+			<a href="#" id="controlToCommunity" class="eu-control eu-control-right"><i class="fa fa-angle-right"></i></a>
+			<a href="#" id="controlToDesktop" class="eu-control eu-control-left"><i class="fa fa-angle-left"></i></a>
+			<div id="profile-cont">
+				<div class="row normalize-row">
+					<div class="col-sm-3 text-center dark-square">
+						<img src="/images/avatar.png" alt="Avatar" id="avatar-profile" class="img-responsive img-circle img-center">
+						<address id="profile-info">
+							<strong id="user-name" class="white user-title"></strong><br>
+							<a href="#" id="user-mail" class="white"></a><br>
+							<div class='city-panel white'><span id="user-city"></span></div>
+						</address>
+					</div>
+					<div class="col-sm-9">
+						<div id="calendar-row">
+							<h3>Calendario</h3>
+							<ul class="list-inline text-right">
+								<li><a href="#" id="daily-calendar" class="eu-calendar-btn">D&iacute;a</a></li>
+								<!--
+								<li><a href="#" id="weekly-calendar" class="eu-calendar-btn">Semana</a></li>
+								-->
+								<li><a href="#" id="month-calendar" class="eu-calendar-btn">Mes</a></li>
+							</ul>
+							<div id="calendar-container">
+								<webview id="webview-calendar" src="" style="border:0;height:152px;width:100%;" scrolling="no"></webview>
+							</div>
+						</div>
+						<!--<a href="#" class='link-profile' service="Navegar por internet" url="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;height=225&amp;wkst=1&amp;bgcolor=%23f7f7f7&amp;src=anditel.kmelx1%40gmail.com&amp;color=%23125A12&amp;ctz=America%2FBogota">Ver calendario</a>
+						<webview id="webview-calendar" src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;height=225&amp;wkst=1&amp;bgcolor=%23f7f7f7&amp;src=anditel.kmelx1%40gmail.com&amp;color=%23125A12&amp;ctz=America%2FBogota" style="border:0;height:225px;width:100%;" scrolling="no"></webview>-->
+					</div>
+				</div>
+				<div class="row normalize-row">
+					<div id="edit-profile-cont" class="col-sm-3">
+						<h3>Sobre m&iacute;</h3>
+						<ul class="list-unstyled">
+							<li>Sexo: <span id='user-sex'></span></li>
+							<li>Edad: <span id='user-birth'></span></li>
+							<li class="border-down"><a href="#" id="edit-profile">Editar perfil KvD</a><a href="#" class="user-notifications">0</a></li>
+							<li><a href="#" id="edit-profile-google">Editar perfil Gmail</a></li>
+						</ul>
+						<div class="text-center"></div>
+					</div>
+					<div class="col-sm-9">
+						<div id="courses-row">
+							<h3>Mis Cursos</h3>
+							<div id="courses-container" class=""></div>
+						</div>
+					</div>
+				</div>
+				<div class="row normalize-row">
+					<div id="badges-col" class="col-sm-3">
+						<div id="badges-row">
+							<h3>Insignias</h3>
+							<div id="badges-container" class=""></div>
+						</div>
+					</div>
+					<div class="col-sm-4" id="right-column-profile">
+						<div id="profile-tribes">
+							<h4>Reciente en Foros</h4>
+							<div id="tribes-container">
+								<div class="text-muted col-sm-7">No hay actividad reciente.</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-5" id="right-column-profile">
+						<div id="profile-blog">
+							<h4>Reciente en Blogs</h4>
+							<div id="blog-container">
+								<div class="text-muted col-sm-7">No hay actividad reciente.</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End profile screen template -->
+
+		<!-- Edit Profile screen template-->
+		<div id="edit-profile-tpl" type="text/x-handlebars-template">
+			<div class="profile-edit" id="home-content-container">
+				<div id="sideBar" class="side-bar">
+					<ul class="list-unstyled">
+						<li><a href="#" id="side-hide"><img src="images/sidebar/volver.png" alt="Esconder" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-noticias"><img src="images/sidebar/noticias.png" alt="Noticias" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-blog"><img src="images/sidebar/blog.png" alt="Blog" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-foro"><img src="images/sidebar/foro.png" alt="Foro" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-chat"><img src="images/sidebar/chat.png" alt="Chat" class="img-responsive img-center"></a></li>
+					</ul>
+				</div>
+
+				<a href="#" id="open-sidebar"><img src="images/sidebar/open.png" alt="Abrir" class="img-responsive"></a>
+				<!-- <a href="#" id="return-home"><img src="images/return.png" alt="Volver" class="img-responsive"></a> -->
+				<div>
+					<h2 class="green"><a href="#" class="back-to-services"><i class="fa fa-arrow-circle-o-left green"></i></a> Perfil</h2>
+				</div>
+
+				<h1 class="text-center green">Editar Informaci&oacute;n para el Perfil</h1>
+				<h3 class="text-center text-muted">Ingresa los siguientes datos para completar tu perfil.</h3>
+				<h4 class="text-center text-muted">Recuerda que los campos marcados con ( <i class="fa fa-asterisk red"></i> ) son obligatorios.</h4>
+				<h4 class="text-center red" id="message-full-profile" style="display: none;"></h4>
+				<div class="container container-edit-profile">
+					<form role="form" class="edit-profile-form">
+						<div class="clear">
+							<div class="col-md-2"></div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="document_type"><i class="fa fa-asterisk red"></i> Tipo de Documento:</label>
+
+									<!-- Document Types -->
+									<select name="document_type" id='document-type' class="form-control">
+										<!-- <option value="1">C&eacute;dula</option>
+										<option value="2">Tarjeta de identidad</option>
+										<option value="3">Registro civil</option>
+										<option value="4">C&eacute;dula de extranjer&iacute;a</option> -->
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="document"><i class="fa fa-asterisk red"></i> N&uacute;mero de documento</label>
+									<input type="text" class="form-control" id="document" pattern="\d*" placeholder="Ejemplo. 1202020202">
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+						<div class="clear">
+							<div class="col-md-2"></div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="ethnical_group"><i class="fa fa-asterisk red"></i> Grupo &Eacute;tnico:</label>
+
+									<!-- Ethnical Group -->
+									<select name="ethnical" id="ethnical_group" class="form-control">
+										<!--
+										<option value="1">Afrodescendiente</option>
+										<option value="2">Indigena</option>
+										<option value="3">Rom</option>
+										<option value="4">Raizales</option>
+										<option value="5">Palenqueros</option>
+										<option value="6">No pertenece a ning&uacute;n grupo etnico</option>
+										-->
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="education_level"><i class="fa fa-asterisk red"></i> Nivel Educativo:</label>
+
+									<!-- Educational Level -->
+									<select name="education_level" id="education_level" class="form-control">
+										<!--
+										<option value="1">Primaria</option>
+										<option value="2">Bachiller</option>
+										<option value="3">Universitario</option>
+										-->
+									</select>
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+						<div class="clear">
+							<div class="col-md-2"></div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="ocupation"><i class="fa fa-asterisk red"></i> Ocupaci&oacute;n:</label>
+									
+									<!-- Ocupation -->
+									<select name="ocupation" id="ocupation" class="form-control">
+										<!--
+										<option value="1">Estudiante</option>
+										<option value="2">Trabajador</option>
+										-->
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="economic_status"><i class="fa fa-asterisk red"></i> Estrato:</label>
+									<select name="economic_status" id="economic_status" class="form-control">
+										<!--
+										<option value="1">Estrato 1</option>
+										<option value="2">Estrato 2</option>
+										<option value="3">Estrato 3</option>
+										<option value="4">Estrato 4</option>
+										-->
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="clear">
+							<div class="col-md-2"></div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="sector"><i class="fa fa-asterisk red"></i> Sector:</label>
+									
+									<!-- Ocupation -->
+									<select name="sector" id="sector" class="form-control">
+										<!--
+										<option value="1">Estudiante</option>
+										<option value="2">Trabajador</option>
+										-->
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="ubication"><i class="fa fa-asterisk red"></i> Ubicaci&oacute;n:</label>
+									<select name="ubication" id="ubication" class="form-control">
+										<!--
+										<option value="1">Estrato 1</option>
+										<option value="2">Estrato 2</option>
+										<option value="3">Estrato 3</option>
+										<option value="4">Estrato 4</option>
+										-->
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="clear">
+							<div class="col-md-2"></div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="mobile"><i class="fa fa-asterisk red"></i> Tel&eacute;fono celular:</label>
+									<input type="text" class="form-control" id="mobile" placeholder="12345678">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for=""><i class="fa fa-asterisk red"></i> Situaci&oacute;n en particular:</label>
+									<a class="btn btn-green btn-block" id="edit-situation">Marca las opciones que consideres </a>
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+						<div class="clear">
+							<div class="col-md-2"></div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="birthdate"><i class="fa fa-asterisk red"></i> Fecha de nacimiento:</label>
+									<input type="date" class="form-control" id="birthdate" placeholder="AAAA-MM-DD">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="birthdate"><i class="fa fa-asterisk red"></i> G&eacute;nero:</label>
+									<select name="gender" id="gender" class="form-control">
+										<option value="Masculino">Masculino</option>
+										<option value="Femenino">Femenino</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+						</div> 
+						<div class="form-group clear text-center">
+							<a id="save-edit-profile" class="btn btn-green btn-lg">Guardar</a><br />
+							<!-- <a id="cancel-edit-profile" class="btn btn-link btn-lg">Cancelar</a> -->
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- End Edit profile screen template -->
+
+		<!-- Community screen template -->
+		<div id="community-tpl" type="text/x-handlebars-template">
+			<div class="container" id="community-container">
+				<div id="sideBar" class="side-bar">
+					<ul class="list-unstyled">
+						<li><a href="#" id="side-hide"><img src="images/sidebar/volver.png" alt="Esconder" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-noticias"><img src="images/sidebar/noticias.png" alt="Noticias" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-blog"><img src="images/sidebar/blog.png" alt="Blog" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-foro"><img src="images/sidebar/foro.png" alt="Foro" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-chat"><img src="images/sidebar/chat.png" alt="Chat" class="img-responsive img-center"></a></li>
+					</ul>
+				</div>
+				<a href="#" id="open-sidebar"><img src="images/sidebar/open.png" alt="Abrir" class="img-responsive"></a>
+				<a href="#" id="return-home"><img src="images/return.png" alt="Volver" class="img-responsive"></a>
+				<a href="#" id="controlToEducation" class="eu-control eu-control-right"><i class="fa fa-angle-right"></i></a>
+				<a href="#" id="controlToProfile" class="eu-control eu-control-left"><i class="fa fa-angle-left"></i></a>
+				<ul id="sub-navigation" class="list-inline">
+					<li><a href="#" id="profile-sub-menu"><img src="/images/sub_profile.png" alt=""></a></li>
+					<li><a href="#" id="education-sub-menu"><img src="/images/sub_education.png" alt=""></a></li>
+					<li class="not-admin"><a href="#" id="services-sub-menu"><img src="/images/sub_services.png" alt=""></a></li>
+					<li class="is-admin"><a href="#" id="administration-sub-menu"><img src="/images/sub_administration.png" alt=""></a></li>
+				</ul>
+				<h2 class="red" id="community-title">Comunidad</h2>
+				<div class="col-sm-4 widget">
+					<!-- <h3 class="pull-left">Chat</h3> -->
+					<a class="pull-left link-community" url="https://plus.google.com/people/contacts" href="#">
+						<h3>Chat</h3>
+					</a>
+					<a class="pull-right link-community" url="https://support.google.com/hangouts/answer/3115553?hl=es-419&ref_topic=2944848">
+						<h3>Ayuda</h3>
+					</a>
+					<div class="list-group clear" id="list-people">
+						<span id="list-people-empty-message" class="text-muted"><i>Todav&iacute;a no tienes personas en tus circulos, agrega personas desde el enlace "Ir al chat" aqu&iacute; arriba.</i></span>
+					</div>
+				</div>
+				<div class="col-sm-4 widget">
+					<!-- <h3 class="pull-left">Foros</h3> -->
+					<a class="pull-left link-community" url="https://plus.google.com/u/0/communities/104263497530990858030" href="#">
+						<h3>Foros</h3>
+					</a>
+					<div class="list-group clear" id="list-forums"></div>
+				</div>
+				<div class="col-sm-4 widget">
+					<!-- <h3 class="pull-left">Blogs</h3>-->
+					<a class="pull-left link-community" url="https://www.blogger.com" href="#">
+						<h3>Blogs</h3>
+					</a>
+					<div class="list-group clear" id="list-blog-entries"></div>
+				</div>
+				<div class="clear widget row normalize-row">
+					<div class="col-md-8">
+						<h3 class="pull-left">&Uacute;ltimas noticias</h3>
+						<a class="pull-right link-community" id='link-news' href="#">
+							<h3>Ver todas las noticias</h3>
+						</a>
+						<div id="latest-news" class="carousel slide clear" data-ride="carousel">
+							<div class="carousel-inner" id="list-news-big"></div>
+							<a class="right carousel-control" href="#latest-news" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right red"></span>
+							</a>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<h3>Top Usuarios</h3>
+						<!-- Here is where I put the top users, if I had a service -->
+						<!-- http://static.tumblr.com/93ff07bb8f726b81115b4261da112d75/gdeechz/TUan5hony/tumblr_static_7m3myqgb1zswooogs40gsco4w.png -->
+						<div id="top-users">
+							<div class="text-muted">No hay actividad reciente.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Community screen template -->
+
+		<!-- Services screen template -->
+		<div id="services-tpl" type="text/x-handlebars-template">
+			<div class="container" id="services-container">
+				<div id="sideBar" class="side-bar">
+					<ul class="list-unstyled">
+						<li><a href="#" id="side-hide"><img src="images/sidebar/volver.png" alt="Esconder" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-noticias"><img src="images/sidebar/noticias.png" alt="Noticias" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-blog"><img src="images/sidebar/blog.png" alt="Blog" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-foro"><img src="images/sidebar/foro.png" alt="Foro" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-chat"><img src="images/sidebar/chat.png" alt="Chat" class="img-responsive img-center"></a></li>
+					</ul>
+				</div>
+				<a href="#" id="open-sidebar"><img src="images/sidebar/open.png" alt="Abrir" class="img-responsive"></a>
+				<a href="#" id="return-home"><img src="images/return.png" alt="Volver" class="img-responsive"></a>
+				<a href="#" id="controlToEducation" class="eu-control eu-control-left"><i class="fa fa-angle-left"></i></a>
+				<ul id="sub-navigation" class="list-inline">
+					<li><a href="#" id="profile-sub-menu"><img src="/images/sub_profile.png" alt=""></a></li>
+					<li><a href="#" id="community-sub-menu"><img src="/images/sub_comunidad.png" alt=""></a></li>
+					<li><a href="#" id="education-sub-menu"><img src="/images/sub_education.png" alt=""></a></li>
+				</ul>
+
+				<h2 id="services-title-h2" class="yellow">Servicios del Kiosco</h2>
+				<div class="container external-services-container">
+					<div class="col-sm-4">
+						<div class="services-widget services-blue">
+							<div class="text-center white"><h1><a href="#" class="link-service" service="Uso del PC" id="use-computer"><i class="fa fa-desktop"></i></a></h1></div>
+							<div class="white text-center">Uso del PC
+								<div class="offline-ico-ser"><img src="/images/offline-icon.png" alt="Offline"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="services-widget services-blue">
+							<div class="text-center white"><h1><a href="#" class="link-service" service="Correo electronico" url="http://mail.google.com"><i class="fa fa-envelope-o"></i></a></h1></div>
+							<div class="white text-center">Correo electr&oacute;nico
+								<div class="offline-ico-ser"><img src="/images/offline-icon.png" alt="Offline"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- <div class="col-sm-4">
+						<div class="services-widget" id="videoconference">
+							<div class="text-center white"><h1 class="video"><a href="#" class="link-service" url="https://hangoutsapi.talkgadget.google.com/hangouts/_?gid=s~nmhangouts"><i class="fa fa-video-camera"></i></a></h1></div>
+							<div class="white text-center">Videollamadas</div>
+						</div>
+					</div> -->
+
+					<div class="col-sm-4">
+						<div class="services-widget services-blue">
+							<div class="text-center white"><h1><a href="#" class="link-service" url="https://docs.google.com/document/?usp=mkt_docs" service="Documentos en linea"><i class="fa fa-files-o"></i></a></h1></div>
+							<div class="white text-center">Archivos en L&iacute;nea
+								<div class="offline-ico-ser"><img src="/images/offline-icon.png" alt="Offline"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="services-widget services-red">
+							<div class="text-center white"><h1><a href="#" class="link-service" url="http://news.google.com" service="Portal de noticias"><i class="fa fa-rss"></i></a></h1></div>
+							<div class="white text-center">Portal de Noticias
+								<div class="offline-ico-ser"><img src="/images/offline-icon.png" alt="Offline"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="services-widget services-red">
+							<div class="text-center white"><h1><a href="#" class="link-service" url="http://www.google.com" service="Navegar por internet"><i class="chrome-logo"></i></a></h1></div>
+							<div class="white text-center">Internet
+								<div class="offline-ico-ser"><img src="/images/offline-icon.png" alt="Offline"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="services-widget services-red">
+							<div class="text-center white"><h1><a href="#" class="link-service" url="https://www.gobiernoenlinea.gov.co/" service="Gobierno en linea"><i class="gobierno-logo"></i></a></h1></div>
+							<div class="white text-center">Gobierno en L&iacute;nea
+								<div class="offline-ico-ser"><img src="/images/offline-icon.png" alt="Offline"></div>
+							</div>
+						</div>
+					</div>
+					<!--
+					<div class="col-sm-4">
+						<div class="services-widget">
+							<div class="text-center white"><h1><i class="fa fa-phone"></i></h1></div>
+							<div class="white text-center">Telefon&iacute;a</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="services-widget">
+							<div class="text-center white"><h1><i class="fa fa-music"></i></h1></div>
+							<div class="white text-center">M&uacute;sica</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="services-widget">
+							<div class="text-center white"><h1><i class="fa fa-film"></i></h1></div>
+							<div class="white text-center">Cine Club</div>
+						</div>
+					</div>
+					-->
+					<a class="eu-control eu-control-right is-admin" id="load-administration">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- End Services screen template -->
+
+		<!-- Educative Services screen template -->
+		<div id="educa-services-tpl" type="text/x-handlebars-template">
+			<div class="container" id="services-edu-container">
+				<div id="sideBar" class="side-bar">
+					<ul class="list-unstyled">
+						<li><a href="#" id="side-hide"><img src="images/sidebar/volver.png" alt="Esconder" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-noticias"><img src="images/sidebar/noticias.png" alt="Noticias" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-blog"><img src="images/sidebar/blog.png" alt="Blog" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-foro"><img src="images/sidebar/foro.png" alt="Foro" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-chat"><img src="images/sidebar/chat.png" alt="Chat" class="img-responsive img-center"></a></li>
+					</ul>
+				</div>
+
+				<a href="#" id="open-sidebar" class="education-sidebar"><img src="images/sidebar/open.png" alt="Abrir" class="img-responsive"></a>
+				<a href="#" id="return-home"><img src="images/return.png" alt="Volver" class="img-responsive"></a>
+				<a href="#" id="controlToServices" class="eu-control eu-control-right not-admin"><i class="fa fa-angle-right"></i></a>
+				<a href="#" id="controlToAdministration" class="eu-control eu-control-right is-admin"><i class="fa fa-angle-right"></i></a>
+				<a href="#" id="controlToCommunity" class="eu-control eu-control-left"><i class="fa fa-angle-left"></i></a>
+				<ul id="sub-navigation" class="list-inline">
+					<li><a href="#" id="profile-sub-menu"><img src="/images/sub_profile.png" alt=""></a></li>
+					<li><a href="#" id="community-sub-menu"><img src="/images/sub_comunidad.png" alt=""></a></li>
+					<li class="not-admin"><a href="#" id="services-sub-menu"><img src="/images/sub_services.png" alt=""></a></li>
+					<li class="is-admin"><a href="#" id="administration-sub-menu"><img src="/images/sub_administration.png" alt=""></a></li>
+				</ul>
+				<h2 class="blue" id="education-title">Servicios Educativos</h2>
+				<div class="edu-services-container">
+					<div class="row" id="edu-services">
+						<div class="col-sm-4 blue-bg">
+							<div class="text-center white">
+								<h1 class="text-center">
+									<a href="#" class="link-edu" id="lms-link" url="">
+										<img src="images/cursos-title.png" alt="Noticias" class="img-responsive img-center">
+									</a>
+								</h1>
+							</div>
+							<div class="white tile-subtitle text-center"><img src="images/andikme-title.png" alt="AndiKme" class="img-responsive img-center"></div>
+						</div>
+						<div class="col-sm-4 blue-bg">
+							<div class="text-center white"><h1><a href="#" class="link-edu" url="http://www.aprendedigital.com/kvd/juegos/"><i class="juegos-edu"></i></a></h1></div>
+							<div class="white tile-subtitle">Juegos Educativos</div>
+						</div>
+						<div class="col-sm-4 blue-bg">
+							<div class="text-center white"><h1><a href="#" class="link-edu" url="http://www.aprendedigital.com/kvd/educacion/"><i class="enlaces-inter"></i></a></h1></div>
+							<div class="white tile-subtitle">Enlaces de Inter&eacute;s</div>
+						</div>
+					</div>
+					<!--<div class="row" id="courses-container-services"></div>-->
+				</div>
+			</div>
+		</div>
+		<!-- End Educative Services screen template -->
+
+		<!-- Administration screen template -->
+		<div id="administration-tpl" type="text/x-handlebars-template">
+			<div class="container" id="administration-container">
+				<div id="sideBar" class="side-bar">
+					<ul class="list-unstyled">
+						<li><a href="#" id="side-hide"><img src="images/sidebar/volver.png" alt="Esconder" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-noticias"><img src="images/sidebar/noticias.png" alt="Noticias" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-blog"><img src="images/sidebar/blog.png" alt="Blog" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-foro"><img src="images/sidebar/foro.png" alt="Foro" class="img-responsive img-center"></a></li>
+						<li><a href="#" id="side-chat"><img src="images/sidebar/chat.png" alt="Chat" class="img-responsive img-center"></a></li>
+					</ul>
+				</div>
+				<a href="#" id="open-sidebar" class="profile-sidebar"><img src="images/sidebar/open.png" alt="Abrir" class="img-responsive"></a>
+				<a href="#" id="return-home"><img src="images/return.png" alt="Volver" class="img-responsive"></a>
+				<ul id="sub-navigation" class="list-inline administration-sub">
+					<li><a href="#" id="profile-sub-menu"><img src="/images/sub_profile.png" alt=""></a></li>
+					<li><a href="#" id="community-sub-menu"><img src="/images/sub_comunidad.png" alt=""></a></li>
+					<li><a href="#" id="education-sub-menu"><img src="/images/sub_education.png" alt=""></a></li>
+				</ul>
+				<a href="#" id="controlToEducation" class="eu-control eu-control-left"><i class="fa fa-angle-left"></i></a>
+				<h2 class="violet">Administraci&oacute;n del Kiosco</h2>
+				<div class="container">
+					<a href="#" id="controlBackToServices" class="eu-control eu-control-left"><i class="fa fa-angle-left"></i></a>
+					<div class="admin-services-container">
+						<div class="col-sm-6">
+							<div class="administration-widget">
+								<div class="text-center white administration-item">
+									<div class='administration-logos'>
+										<a href='#' class='white' id='lmsAdmin'>
+											<!-- <h3>AndiKME</h3> -->
+											<img src="images/logo_blanco_AndiKme.png" style="width: 200px;">
+										</a>
+									</div>
+								</div>
+								<div class="white widget-tile-subtitle text-center">Administraci&oacute;n de la<br>plataforma e-learning</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="administration-widget">
+								<div class="text-center white administration-item">
+									<div class='administration-logos'>
+										<a href='#' class='white' id='timerAdmin'>
+											<h3>POS Smart</h3>
+											<!--<img src="images/logo_postmart_Blanco.png" style="width: 240px;">-->
+										</a>
+									</div>
+								</div>
+								<div class="white widget-tile-subtitle  text-center">Sistema de tarificaci&oacute;n y<br>administraci&oacute;n general</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End administration screen template -->
+
+		
+		<!-- Services embedded -->
+		<div id="embedded-service-tpl">
+			<div class="container" id="services-container">
+				<h2 class="yellow"><a href="#" class="back-to-services"><i class="fa fa-arrow-circle-o-left"></i></a> Servicios del Kiosco</h2>
+				<div class="row" id="browser-bar">
+					<form id="browser-form">
+						<div class="col-md-2">
+							<a href="#" id="browser-back-button"><i class="fa fa-arrow-circle-o-left" style="font-size: 32px;"></i></a>
+							<a href="#" id="browser-forward-button"><i class="fa fa-arrow-circle-o-right" style="font-size: 24px;"></i></a>
+							&nbsp;
+							<a href="#" id="browser-refresh-button"><i class="fa fa-refresh" style="font-size: 24px;"></i></a>
+							&nbsp;
+							<a href="#" id="browser-home-button"><i class="fa fa-home" style="font-size: 24px;"></i></a>
+						</div>
+						<div class="col-md-1">
+							<span class="browser-loading-indicator pull-right"></span>
+						</div>
+						<div class="col-md-8">
+							<input type="text" id="browser-address-bar" class="form-control" placeholder="http://">
+						</div>
+						<div class="col-md-1">
+							<a href="#" id="browser-go-button" class="btn btn-success">Ir</a>
+						</div>
+					</form>
+				</div>
+				<div style="height: 20px;">
+					<span class='services-loading-indicator'></span>
+					<br>
+				</div>
+				<webview id="service-webview" style="width: 100%; height: 500px;" src=""></webview>
+			</div>
+		</div>
+
+		<div id="embedded-profile-tpl">
+			<div class="container" id="services-container">
+				<h2 class="green"><a href="#" class="back-to-services"><i class="fa fa-arrow-circle-o-left green"></i></a> Perfil</h2>
+				<!-- <a id="link-personal-calendar" href=''>Ir a mi calendario personal</a> -->
+				<webview id="profile-webview" style="width: 100%; height: 500px;" src=""></webview>
+			</div>
+		</div>
+
+		<!-- Services Educative Services embedded -->
+		<div id="embedded-educa-services-tpl">
+			<div class="container" id="services-container">
+				<h2 class="blue"><a href="#" class="back-to-services"><i class="fa fa-arrow-circle-o-left"></i></a> Servicios Educativos</h2>
+				<div class="row" id="browser-bar">
+					<form id="educa-browser-form">
+						<div class="col-md-2">
+							<a href="#" id="educa-browser-back-button"><i class="fa fa-arrow-circle-o-left" style="font-size: 32px;"></i></a>
+							<a href="#" id="educa-browser-forward-button"><i class="fa fa-arrow-circle-o-right" style="font-size: 24px;"></i></a>
+							&nbsp;
+							<a href="#" id="educa-browser-refresh-button"><i class="fa fa-refresh" style="font-size: 24px;"></i></a>
+							&nbsp;
+							<a href="#" id="educa-browser-home-button"><i class="fa fa-home" style="font-size: 24px;"></i></a>
+						</div>
+						<div class="col-md-1">
+							<span class="educa-browser-loading-indicator pull-right"></span>
+						</div>
+					</form>
+				</div>
+				<div style="height: 20px;">
+					<!-- <span class='educa-services-loading-indicator'></span>
+					<br> -->
+				</div>
+				<webview id="educa-service-webview" style="width: 100%; height: 500px;" src=""></webview>
+			</div>
+		</div>
+
+		<div id="embedded-community-tpl">
+			<div class="container" id="services-container">
+				<h2 class="red"><a href="#" class="back-to-services"><i class="fa fa-arrow-circle-o-left"></i></a> Comunidad</h2>
+				<div style="height: 20px;">
+					<span class='community-loading-indicator'></span>
+					<br>
+				</div>
+				<webview id="community-webview" style="width: 100%; height: 500px;" src=""></webview>
+			</div>
+		</div>
+
+		<!-- Courses screen template -->
+		<div id="courses-media-tpl">
+			<div class="media">
+				<a class="pull-left" href="#">
+					<img class="media-object">
+				</a>
+				<div class="media-body">
+					<h4 class="media-heading">Media heading</h4>
+					...
+				</div>
+			</div>
+		</div>
+		<!-- End Courses screen template -->
+
+		<!-- IMPORTANT: This webview load all user data from Google, don't remove it under any circunstance -->
+		<webview id="login-google-services" src=""></webview>
+		
+		<!-- Offline Notification -->
+		<div id="offline-mark" style="display:none;">
+			<i class="fa fa-dot-circle-o"></i> Offline
+		</div>
+
+		<!-- Multipurpouse Webview object -->
+		<webview id="multipurpose-webview-object" src=""></webview>
+		<webview id="logout-webview-object" src=""></webview>
+		<webview id="xapi-webview-object" src=""></webview>
+		
+		<!-- Multipurpose modal -->
+		<div class="modal fade" id="multipurpose-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<button type="button" id="close-login-modal" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<!-- IMPORTANT: This div is very important. -->
+						<div id="webviewLoginDiv"></div>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!-- Create account modal -->
+		<div class="modal fade" id="create-account-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<button type="button" id="create-account-close-button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<!-- IMPORTANT: This div is very important too. -->
+						<div id="webviewCreateAccountDiv"></div>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!-- End Offline Notification -->
+
+		<!-- Modal for Profile -->
+		<div class="modal fade" id="situacion-perfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Situaci&oacute;n en particular</h4>
+					</div>
+
+					<!-- Situation -->
+					<div class="modal-body">
+						<form role="form" id="situation">
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal for Profile -->
+
+		<!-- Modal for go into profile -->
+		<div class="modal fade" id="modal-complete-profile">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body" style="text-align: center;">
+						<h2 class="modal-title" id="myModalLabel">&iexcl;Muy bien!</h2>
+						<br><br>
+						Hola <span id="email-complete-profile" class="text-muted"></span>, bienvenido(a) al Escritorio Unificado.
+						<br><br>
+						</span>
+						<!--
+						<br><br>
+						<span>Para poder disfrutar de los servicios del<br> Kiosko s&oacute;lo debes leer y aceptar el siguiente contrato Abeas data y luego de esto completar tu perfil.</span>
+						<br>
+						-->
+						<textarea class="textarea-documents" readonly>Dando cumplimiento a lo previsto en el art&iacute;culo 10 del Decreto 1377 de 2013, reglamentario de la Ley 1581 de 2012, en tanto se desarrolla el derecho fundamental del Habeas Data y la consecuente protecci&oacute;n de datos personales, en el marco de la cual toda persona tiene derecho a conocer, actualizar y rectificar las informaciones que se hayan recogido sobre ellas en bases de datos y archivos, y los dem&aacute;s derechos, libertades y garant&iacute;as constitucionales, se tiene que:
+
+ANDITEL S.A.S y la UT IPK como tratante de datos personales obtenidos a trav&eacute;s de sus distintos canales de comercializaci&oacute;n y divulgaci&oacute;n al p&uacute;blico en general y especialmente a sus clientes; solicita su consentimiento para continuar recolectando, recaudando, almacenando, usando, circulando, suprimiendo, procesando, compilando, intercambiando, actualizando y disponiendo  tales datos personales que nos han sido suministrados y que se han incorporado a nuestras bases de datos,  de manera leal, l&iacute;cita, segura y confiable. A partir de la fecha de recibo de la presente comunicaci&oacute;n los titulares de los datos personales tendr&aacute;n un t&eacute;rmino de 30 d&iacute;as h&aacute;biles para solicitar la supresi&oacute;n de los mismos , para lo cual, dicha solicitud podr&aacute; ser dirigida a comunicaciones@anditel.com.co.
+
+En caso de no obtener ninguna respuesta en los t&eacute;rminos descritos en el p&aacute;rrafo anterior, se entiende que usted consiente y autoriza de manera expresa e inequ&iacute;voca a que sus datos personales sean tratados conforme a lo previsto en la presente comunicaci&oacute;n, y en observancia a lo establecido en el art&iacute;culo 9 de la ley 1581 del 2012, el art&iacute;culo 10 del decreto 1377 de 2013, y dem&aacute;s normas concordantes.</textarea>
+						<br><br>
+						<input type="checkbox" id="accept-tos"> Acepto los t&eacute;rminos de servicio.
+						<br><br>
+						<a id="link-edit-profile" href="#" class="btn btn-success">Continuar</a>
+						<br>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!-- Modal that runs when user closes session -->
+		<div class="modal fade" id="modal-closes-session">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body" style="text-align: center;">
+						<h2 class="modal-title" id="myModalLabel">&iexcl;Muchas gracias!</h2>
+						<br>
+						<span>Estos son los servicios que utilizaste:</span>
+						<br>
+						<div id="used-services-list">
+							<li class="dropdown-header">Ninguno</li>
+						</div>
+						<br>
+						<span>Antes de que te vayas, por favor califica nuestro servicio de Kioscos:</span>
+						<br>
+						<div id='rating-service'></div>
+						<br>
+						<textarea class='form-control' id='rating-comment' placeholder='Escr&iacute;benos un comentario aqu&iacute;.'></textarea>
+						<br>
+						<a id="btn-rate-services" href="#" class="btn btn-primary">Enviar</a>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!-- Message before close session -->
+		<div class="modal fade" id="modal-before-closes-session">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body" style="text-align: center;">
+						<h2 class="modal-title" id="myModalLabel">&iexcl;Te avisamos!</h2>
+						<br>
+						<span>Le quedan 5 minutos a tu sesi&oacute;n, puedes avisarle a tu gestor en caso de que necesites m&aacute;s tiempo.</span>
+						<br><br>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!-- Message before close session -->
+		<div class="modal fade" id="modal-alert">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body" style="text-align: center;">
+						<h2 class="modal-title" id="myModalLabel">Alerta de la comunidad</h2>
+						<br>
+						<div id="alertText"></div>
+						<br><br>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!-- Welcome Modal -->
+		<div class="modal fade" id="modal-welcome">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body center">
+						<!-- Title -->
+						<h2 class="modal-title" id="myModalLabel">&iexcl;Saludos!</h2>
+						<!-- End title -->
+						<br>
+
+						<!-- Regards -->
+						<span id="">Te damos la bienvenida al servicio de Kioscos Vive Digital haciendo uso del Escritorio Unificado.</span>
+						<!-- End regards -->
+						<br>
+
+						<!-- Instructions -->
+						<h3 class="text-muted">Solic&iacute;tale un saldo a tu gestor</h3>
+						<i class="big lead fa fa-lock text-muted"></i>
+						<br>
+						<span class="text-muted">Una vez que tu gestor te haya asignado saldo puedes seleccionar el bot&oacute;n "Conectar" para iniciar tu sesi&oacute;n.</span>
+						<br>
+						<br>
+						<span class="text-muted">Si eres gestor o coordinador solo tienes que seleccionar el bot&oacute;n "Conectar" para iniciar tu sesi&oacute;n.</span>
+						<!-- End instruction -->
+						<br>
+						<br>
+						<div class="div-prelogin-loading hidden">
+							<img class="loader-image" src="/images/loading.gif"> Conectando con el equipo del gestor...
+							<br>
+							<br>
+						</div>
+
+						<div class="modal-welcome-connection-error-message hidden">
+							<div class="alert alert-danger">
+								No se pudo establecer conexi&oacute;n con el equipo del gestor, intenta conectarte nuevamente.
+							</div>
+						</div>
+
+						<div class="modal-welcome-error-message hidden">
+							<div class="alert alert-danger">
+								Todav&iacute;a no tienes un nuevo saldo asignado.
+							</div>
+						</div>
+
+						<div class="modal-welcome-server-error-message hidden">
+							<div class="alert alert-danger">
+								No se pudo establecer conexi&oacute;n con el servidor, intenta conectarte nuevamente.
+							</div>
+						</div>
+						
+						<!-- Buttons -->
+						<a href="#" class="btn btn-primary btn-prelogin-ok">Conectar</a>
+						<a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default refresh-login btn-prelogin-cancel">Cancelar</a>
+						<!-- End buttons -->
+						<!-- -->
+						<!-- <a id="btn-enter-eu" href="#" class="btn btn-success">Continuar</a>-->
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<script src="js/libs/jquery.js"></script>
+		<script src="js/libs/jquery.raty.js"></script>
+		<script src="js/libs/jquery.raty.min.js"></script>
+		<script src="js/libs/bootstrap.js"></script>
+		<script src="js/libs/masonry.js"></script>
+		<script src="js/libs/jquery-chron.js"></script>
+		<script src="js/functions.js"></script>
+		<script src="properties.js"></script>
+		<script src="js/models.js"></script>
+		<script src="js/test.js"></script>
+		<script src="js/gui.js"></script>
+		<script src="js/libs/actions.js"></script>
+	</body>
+</html>
