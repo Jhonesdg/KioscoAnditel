@@ -1,7 +1,7 @@
 {
-	"name": "Escritorio Unificado",
+	"name": "Kiosko Anditel",
 	"description": "Kiosko Vive Digital.",
-	"version": "0.0.88",
+	"version": "0.0.1",
 	"app": {
 		"background": {
 			"scripts": ["js/background.js"]
