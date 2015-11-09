@@ -2817,49 +2817,10 @@ function loginUnifiedDesktop() {
 					LearningServices.request.requestProfileData(function() {
 						console.log("(+) Get Profile data.");
 
-						// If the user is staff.
-						// if (getLMSUserProfile().is_staff) {
-						if (objUserProfile.is_staff) {
-
 							// Open EU
 							loadLoginSettings();
 							$(".div-prelogin-loading").removeClass("hidden");
 							return;
-						}
-
-						/*
-						 * If session is still alive
-						 */
-						console.log("[DEBUG] - stillAlive: " + isSessionStillAlive());
-						if (isSessionStillAlive()) {
-							setLastSessionTime(); // Set counter for old session
-							TimerServices.request.requestUserTimerData(); // Start POSmart Session
-							loadLoginSettings(); // Open EU
-							return;
-						}
-
-						/*
-						 * If current user is different than user that had energy cut then
-						 * send an dummy poll.
-						 */
-						if (objUserProfile && lastLog && objUserProfile.email != lastLog.email && lastLog.status == 'open') {
-							requestXAPIPoll('poll', 4);
-						}
-
-						TimerServices.request.requestUserTimerData(function(event) {
-							console.log('(+) With POSmart Data.');
-
-							loadLoginSettings();
-							//$('.div-prelogin-loading').addClass('hidden');
-							sessionStatus = 'open';
-						}, function(event) { 
-							console.log('(+) Without POSmart Data.');
-							$(".div-prelogin-loading").addClass("hidden");
-							$('.modal-welcome-error-message').removeClass("hidden");
-						}, function(event){
-							$(".div-prelogin-loading").addClass("hidden");
-							$('.modal-welcome-connection-error-message').removeClass("hidden");
-						});
 					});
 				});
 				
