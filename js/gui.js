@@ -158,7 +158,7 @@ function alertListener() {
 					listServices.push(itemElement);
 				}
 
-				loadCostServices();
+				
 
 				var email = getUserProfile().email;
 				var id = getUserProfile().id;
@@ -459,13 +459,7 @@ function loadProfile(profile, courses) {
 		console.log(e);
 	}
 
-	try {
-		// Load cost services menu
-		loadCostServices();
-	} catch(e) {
-		console.log('Error on loadCostServices method: ');
-		console.log(e);
-	}
+	
 
 	loadImage(imageUrlSized, function(image, e){
 		$('#avatar-profile').attr('src', image);
@@ -609,7 +603,7 @@ function loadProfile(profile, courses) {
 			if (listServices.indexOf(itemElement) == -1) {
 				listServices.push(itemElement);
 			}
-			loadCostServices();
+			
 		}
 		
 	});
@@ -638,7 +632,7 @@ function loadProfile(profile, courses) {
 			listServices.push(itemElement);
 		}
 
-		loadCostServices();
+		
 
 		var email = getUserProfile().emails[0].value;
 		var id = getUserProfile().id;
@@ -1248,7 +1242,7 @@ function setCommunityEvents() {
 		}
 
 		communityEvents();
-		loadCostServices();
+		
 	});
 }
 
@@ -1288,7 +1282,7 @@ function loadCommunity(profile, courses) {
 	startCommunityProcess();
 	//setCommunityResources();
 	// Load cost services menu
-	loadCostServices();
+	
 
 	$('#main-nav').removeClass('blue-bg').removeClass('yellow-bg').removeClass('red-bg').removeClass('profile').removeClass('violet-bg');
 	$('#main-nav').addClass('red-bg');
@@ -1438,7 +1432,7 @@ function loadEducation(profile, courses) {
 	});
 
 	// Load cost services menu
-	loadCostServices();
+
 
 	$('.link-edu').on('click', function(evt) {
 		
@@ -1447,8 +1441,6 @@ function loadEducation(profile, courses) {
 		if (listServices.indexOf(itemElement) == -1) {
 			listServices.push(itemElement);
 		}
-
-		loadCostServices();
 
 		if ($(this).attr("id") == "lms-link") {
 			// var email = getUserProfile().email;
@@ -1660,21 +1652,7 @@ function loadAdministration(profile, courses){
 
 }
 
-function loadCostServices() {
-	if (!listServices) {
-		return;
-	}
-	var preHtmlServices = "" 
-		+ '<li role="presentation" class="dropdown-header">Usted esta consumiendo los siguientes servicios</li>'
-		+ '<li class="divider"></li>';
 
-	$("#cron-container").parent().find(".dropdown-menu").html(preHtmlServices);
-
-	for(var i = 0; i < listServices.length; i++) {
-		var itemElement = listServices[i];
-		$("#cron-container").parent().find(".dropdown-menu").append(itemElement);
-	}
-}
 
 function getItemServiceHtml(service) {
 	return "<li class='dropdown-header'>" 
@@ -1889,7 +1867,7 @@ function loadServices(profile, courses) {
 	sidebarActions();
 	sideBarEvents();
 
-	loadCostServices();
+
 
 	$('#main-nav').removeClass('blue-bg').removeClass('yellow-bg').removeClass('red-bg').removeClass('profile').removeClass('violet-bg');
 	$('#main-nav').addClass('yellow-bg');
@@ -1911,7 +1889,7 @@ function loadServices(profile, courses) {
 		
 		var urlService = $(this).attr('url');
 
-		if (($(this).attr('id') == 'use-computer' && startCounter) || !checkConnection()) {
+		if (($(this).attr('id') == 'use-computer') || !checkConnection()) {
 			isMinimized = true;
 			console.log('(i) El Escritorio Unificado se ha minimizado.');
 			chrome.app.window.current().minimize();
@@ -1926,7 +1904,7 @@ function loadServices(profile, courses) {
 
 			// This thing send to xapi data of services
 			sendToXAPI("service", "/", currentService);
-			loadCostServices();
+			
 
 			return false;
 		}
@@ -1973,7 +1951,7 @@ function loadServices(profile, courses) {
 				sendToXAPI("service", urlService, currentService);
 			}
 			
-			loadCostServices();
+			
 		}
 		
 		servicesEvents();
@@ -2036,9 +2014,7 @@ function eventRateServices() {
 		var rateComment = $("#rating-comment").val();
 
 		if (rateValue) {
-			// Save rating on POSmart System
-			requestSaveRating(rateValue);
-
+			
 			$("#modal-closes-session").modal('hide');
 			logout();
 			logout();
@@ -2118,7 +2094,7 @@ function loadDesktop(profile, courses) {
 
 	eventRateServices();
 	// Load cost services menu
-	loadCostServices();
+	
 
 	clearInterval(intervalGoogleAccount);
 }
@@ -2195,30 +2171,6 @@ function openLoginDialog(loginUrl) {
 }
 
 function openLogoutDialog() {
-	listServiceKeys = Object.keys(dictServices);
-	if (listServiceKeys.length != 0) {
-		$("#used-services-list").html('');
-
-		for (var i = 0; i < listServiceKeys.length; i++) {
-			var minuteText = "";
-			var minutes = dictServices[listServiceKeys[i]];
-
-			if (minutes > 1) {
-				minuteText = "mins.";
-			} else {
-				minuteText = "min.";
-			}
-
-			$("#used-services-list").append(
-				'<li class="dropdown-header">' 
-				+ listServiceKeys[i] + ' - ' + minutes 
-				+ ' ' + minuteText 
-				+ '</li>'
-			);
-		};
-		
-	}
-	
 	$("#modal-closes-session").modal({
 		backdrop: 'static',
 		keyboard: false
@@ -2487,7 +2439,7 @@ function clearUserData() {
 	startCounterCalls = false;
 	continueCounter = false;
 
-	loadCostServices();
+	
 	
 	objListAwards = null;
 	objUserProfile = null;
@@ -2539,7 +2491,7 @@ function logoutLMS() {
 
 function logoutUser() {
 	clearUserData();
-	loadCostServices();
+	
 	logoutLMS();
 
 	sessionStatus = 'closed';
@@ -2749,7 +2701,7 @@ function minimizedListener() {
 				dictServices[currentService] = minutes;
 			}
 
-			loadCostServices();
+			
 
 			requestTimerCreateService(currentService, minutes);
 		}
