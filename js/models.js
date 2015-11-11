@@ -63,14 +63,7 @@ var dictServices = {};
 var listServicesWithoutCost = [
 	'Gobierno en linea',
 	'Internet educativo',
-	'Internet seguro'
-]
-
-var listNewWindowServices = [
-    'Documentos en linea'
-]
-
-var listOmittedServices = [
+	'Internet seguro',
 	'Escaner',
 	'Impresiones',
 	'Fotocopias',
@@ -78,11 +71,18 @@ var listOmittedServices = [
 	'Uso del PC offline',
 	'Llamadas telefonicas local, nacional y todo operador celular',
 	'Navegar por internet',
-	'Gobierno en linea',
 	'Correo electronico',
 	'Documentos en linea',
 	'Portal de noticias',
 	'Lectura de noticias',
+]
+
+var listNewWindowServices = [
+    'Documentos en linea'
+]
+
+var listOmittedServices = [
+	
 ]
 
 var listImages = [];
