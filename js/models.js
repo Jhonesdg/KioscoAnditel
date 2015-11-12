@@ -65,6 +65,7 @@ var listServicesWithoutCost = [
 	'Internet educativo',
 	'Internet seguro',
 	'Escaner',
+	'Admin',
 	'Impresiones',
 	'Fotocopias',
 	'Uso del PC',

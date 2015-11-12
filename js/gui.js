@@ -2263,15 +2263,9 @@ function webviewLoginEvents() {
 
 	webviewObject.addEventListener('loadstop', function(e) {
 		var lmsUrl = properties.LMS;
-		console.log("intento", secondTime);
-		console.log("webview-object", webviewObject);
 		var currentUrl = webviewObject.src;
-		console.log("currentUrl", currentUrl);
 		var urlFirstPart = currentUrl.substring(0, lmsUrl.length);
-		console.log(urlFirstPart);
-		console.log("secondTime: " + secondTime);
-		console.log("currentUrl: " + currentUrl);
-
+		
 		if (secondTime > 0 && urlFirstPart.indexOf(lmsUrl) != -1) {
 			// Load JSON data on view
 			GoogleServices.request.strWebviewId = "login-google-services";

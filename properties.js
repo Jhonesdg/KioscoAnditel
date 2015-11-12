@@ -8,7 +8,7 @@ var properties = {
 	KMELX_URL: "http://www.kmelx.com/",
 	OFFLINE_MANAGER: "gestor1",
 	OFFLINE_USER: "usuario1",
-	//LMS: "http://anditel.mooc4.info:5000/",
+	LMSADMIN: "http://anditel.mooc4.org/admin/",
 	//LMS: "http://anditel.mooc4.info/",
 
 	SERVER_TIMER_URL: "http://10.20.20.20:8080/",
@@ -146,3 +146,4 @@ var properties = {
 		return this.SIGNUP_URL;
 	}
 }
+
